@@ -1,0 +1,28 @@
+{% extends "../base" %}
+{% block title %}Create new project{% endblock %}
+
+{% if error %}
+    {% block error %}{{ error }}{% endblock}
+{% endif %}
+{% if notice %}
+    {% block notice %}{{ notice }}{% endblock}
+{% endif %}
+
+{% block content %}
+    <div>
+    <p>Create a new project:</p>
+    <form action="/p/new" method="post">
+      <div>Name: <input name="name" value="{{ name }}" size="60"/></div>
+      <div>Due: <input name="due" id="date" value="{{ due }}" size="10"/></div>
+      <div>Notes: <textarea name="notes" lines="10" cols="60">{{ notes }}</textarea></div>
+      <div><input type="submit" value="New project"></div>
+    </form>
+    </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script>
+         $(document).ready(function() {
+             $("#date").datepicker();
+         });
+    </script>
+{% endblock %}

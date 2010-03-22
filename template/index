@@ -1,0 +1,25 @@
+{% extends "base" %}
+{% block title %}Project list{% endblock %}
+
+{% if error %}
+    {% block error %}{{ error }}{% endblock}
+{% endif %}
+{% if notice %}
+    {% block notice %}{{ notice }}{% endblock}
+{% endif %}
+
+{% block content %}
+    {% if projects %}
+        <table>
+            {% for project in projects %}
+            <tr>
+                <td>{{ project.owner.nickname }}</td>
+                <td>{{ project.name }}</td>
+                <td>{{ project.status }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <div><p>No projects have been started</p></div>
+    {% endif %}
+{% endblock %}

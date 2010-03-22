@@ -1,0 +1,7 @@
+/p/new        - create new project
+/p/<#>        - view/edit project #
+/p/<#>/delete - delete project
+
+/t/new        - create new task
+/t/<#>        - view/edit tastk #
+/t/<#>/delete - delete task

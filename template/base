@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style/layout.css" />
+    <link rel="stylesheet" type="text/css" href="/style/colour.css" />
+    <title>Fecal cohesion: {% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="logo"><h1>fecal cohesion</h1></div>
+        <div id="menubar">
+            <ul id="menu">
+                <li><a href="/">Projects</a></li>
+                <li><a href="/p/new">New project</a></li>
+            </ul>
+        </div>
+
+        {% if error %}
+            <div id="error">
+                Error: {% block error %}{% endblock %}
+            </div>
+        {% endif %} 
+        {% if notice %}
+            <div id="notice">
+                Notice: {% block notice %}{% endblock %}
+            </div>
+        {% endif %} 
+
+        <div id="site_content">
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+  </div>
+</body>
+</html>
