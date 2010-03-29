@@ -2,27 +2,30 @@
 {% block title %}Create new project{% endblock %}
 
 {% if error %}
-    {% block error %}{{ error }}{% endblock}
+    {% block error %}{{ error }}{% endblock %}
 {% endif %}
 {% if notice %}
-    {% block notice %}{{ notice }}{% endblock}
+    {% block notice %}{{ notice }}{% endblock %}
 {% endif %}
 
 {% block content %}
     <div>
-    <p>Create a new project:</p>
+    <h1>Create a new project:</h1>
     <form action="/p/new" method="post">
       <div>Name: <input name="name" value="{{ name }}" size="60"/></div>
-      <div>Due: <input name="due" id="date" value="{{ due }}" size="10"/></div>
+      <div>Due: <input name="due_date" id="due_date" value="{{ due_date }}" size="10"/>
+                <input name="due_time" type="text" id="due_time" value="{{ due_time }}" size="10" /></div>
       <div>Notes: <textarea name="notes" lines="10" cols="60">{{ notes }}</textarea></div>
       <div><input type="submit" value="New project"></div>
     </form>
     </div>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui-1.8.custom.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.timePicker.js"></script>
     <script>
          $(document).ready(function() {
-             $("#date").datepicker();
+             $("#due_date").datepicker();
+             $("#due_time").timePicker();
          });
     </script>
 {% endblock %}

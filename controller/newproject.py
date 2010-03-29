@@ -1,5 +1,5 @@
 import os
-import datetime
+from datetime import datetime
 import cgi
 import logging
 from google.appengine.api import users
@@ -23,18 +23,33 @@ class NewProject(webapp.RequestHandler):
 
         stash = {} 
         stash['name'] = self.request.get('name')
-        stash['due'] = self.request.get('due')
+        stash['due_date'] = self.request.get('due_date')
+        stash['due_time'] = self.request.get('due_time')
         stash['notes'] = self.request.get('notes')
-        if not self.request.get('name'):
+
+        logging.error("'%s' - '%s'" % (stash['due_date'] + " " + stash['due_time'], "%m/%d/%Y %H:%M"))
+        try:
+            due = datetime.strptime(stash['due_date'] + " " + stash['due_time'], "%m/%d/%Y %H:%M")
+        except ValueError:
+            due = None
+
+        if not due:
+            stash['error'] = u"Invalid date/time format. Please use MM/DD/YYYY and HH:MM"
+        elif not self.request.get('name'):
             stash['error'] = u"Please fill in the project name."
-        elif not self.request.get('due'):
+        elif not self.request.get('due_date'):
             stash['error'] = u"Please select a due date."
-        elif not self.request.get('notes'):
-            stash['error'] = u"Notes are empty!."
+        elif not self.request.get('due_time'):
+            stash['error'] = u"Please select a due time."
         else:
-            proj = model.Project(name = stash['name'], due = stash['due'])
+            proj = model.Project(name = stash['name'], due = due)
             proj.notes = stash['notes']
+            proj.status = model.STATUS_NOT_STARTED
+            proj.owner = user;
+            proj.assignee = user;
             if proj.put():
+                proj.id = proj.key().id()
+                proj.put()
                 stash = {}
                 stash['notice'] = u'Project saved.'
             else:

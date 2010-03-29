@@ -2,20 +2,27 @@
 {% block title %}Project list{% endblock %}
 
 {% if error %}
-    {% block error %}{{ error }}{% endblock}
+    {% block error %}{{ error }}{% endblock %}
 {% endif %}
 {% if notice %}
-    {% block notice %}{{ notice }}{% endblock}
+    {% block notice %}{{ notice }}{% endblock %}
 {% endif %}
 
 {% block content %}
     {% if projects %}
         <table>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Due</th>
+                <th>Last updated</th>
+            </tr> 
             {% for project in projects %}
             <tr>
-                <td>{{ project.owner.nickname }}</td>
-                <td>{{ project.name }}</td>
-                <td>{{ project.status }}</td>
+                <td><a href="/p/{{ project.key.id }}">{{ project.name }}</a></td>
+                <td>{{ project.status_text }}</td>
+                <td>{{ project.due }}</td>
+                <td>{{ project.last_updated_text }}</td>
             </tr>
             {% endfor %}
         </table>

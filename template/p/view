@@ -1,0 +1,11 @@
+{% extends "../base" %}
+{% block title %}Project {{ project.name }}{% endblock %}
+
+{% block content %}
+        <h1>{{ project.name }}</h1>
+        Status: {{ project.status_text }}<br/>
+        Owner: {{ project.owner.nickname }}<br/>
+        Due: {{ project.due }}<br/>
+        Last updated: {{ project.last_updated_text }}<br/>
+        Notes: {{ project.notes }}
+{% endblock %}

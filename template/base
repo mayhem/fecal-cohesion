@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/style/layout.css" />
     <link rel="stylesheet" type="text/css" href="/style/colour.css" />
+    <link rel="stylesheet" type="text/css" href="/style/jquery-ui-1.8.custom.css"/> 
     <title>Fecal cohesion: {% block title %}{% endblock %}</title>
 </head>
 
@@ -17,19 +18,19 @@
             </ul>
         </div>
 
-        {% if error %}
-            <div id="error">
-                Error: {% block error %}{% endblock %}
-            </div>
-        {% endif %} 
-        {% if notice %}
-            <div id="notice">
-                Notice: {% block notice %}{% endblock %}
-            </div>
-        {% endif %} 
-
         <div id="site_content">
             <div id="content">
+                {% if error %}
+                    <div class="error">
+                        Error: {% block error %}{% endblock %}
+                    </div>
+                {% endif %} 
+                {% if notice %}
+                    <div class="notice">
+                        {% block notice %}{% endblock %}
+                    </div>
+                {% endif %} 
+
                 {% block content %}{% endblock %}
             </div>
         </div>

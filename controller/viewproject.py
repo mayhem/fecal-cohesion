@@ -6,18 +6,20 @@ from google.appengine.ext.webapp import template
 from google.appengine.ext import db
 import model
 
-class ProjectList(webapp.RequestHandler):
-    def get(self):
+class ViewProject(webapp.RequestHandler):
+    def get(self, id):
         user = users.get_current_user()
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
             return
 
-        projects = db.GqlQuery("SELECT * FROM Project ORDER BY due DESC") 
+        projects = db.GqlQuery("SELECT * FROM Project WHERE id = :id", id = int(id)) 
+        project = projects[0]
+
         template_values = {
             'user':user.nickname(),
-            'projects':projects,
+            'project':project
         }
 
-        path = os.path.join(os.path.dirname(__file__), '../template/index')
+        path = os.path.join(os.path.dirname(__file__), '../template/p/view')
         self.response.out.write(template.render(path, template_values))

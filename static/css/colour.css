@@ -79,3 +79,18 @@ fieldset, .date{border-color: #D6D9C9;}
 { background: #F0F1EB; 
   color: #444;
 }
+
+.error
+{ background: #FA9BB0; 
+  color: #CC0C36;
+  padding: 10px;
+  margin: 10px 0 10px 0;           
+  font-size: large;
+}
+
+.notice
+{ background: #B0C2FF;
+  padding: 10px;
+  margin: 10px 0 10px 0;           
+}
+
