@@ -13,7 +13,7 @@ class ProjectList(webapp.RequestHandler):
             self.redirect(users.create_login_url(self.request.uri))
             return
 
-        projects = db.GqlQuery("SELECT * FROM Project ORDER BY due DESC") 
+        projects = db.GqlQuery("SELECT * FROM Project ORDER BY due") 
         template_values = {
             'user':user.nickname(),
             'projects':projects,

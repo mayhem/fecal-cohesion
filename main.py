@@ -10,6 +10,7 @@ application = webapp.WSGIApplication(
     ('/', projectlist.ProjectList),
     ('/p/new', newproject.NewProject),
     (r'/p/(\d+)', viewproject.ViewProject)
+#    (r'/p/(\d+)/update', updateproject.UpdateProject)
 ], debug=True)
 
 def main():

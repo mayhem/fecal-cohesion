@@ -3,9 +3,12 @@
 
 {% block content %}
         <h1>{{ project.name }}</h1>
+        (<a href="/p/{{project.id}}/update">edit project</a>)<br/><br/>
+        <div>
         Status: {{ project.status_text }}<br/>
         Owner: {{ project.owner.nickname }}<br/>
         Due: {{ project.due }}<br/>
         Last updated: {{ project.last_updated_text }}<br/>
         Notes: {{ project.notes }}
+        </div>
 {% endblock %}
